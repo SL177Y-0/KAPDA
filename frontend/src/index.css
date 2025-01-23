@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a.active hr{
+    display: block;
+}
+
+*{
+    font-family: Outfit;
+}
+
+.prata-regular {
+    font-family: "Prata", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  ::-webkit-scrollbar{
+    display: none;
+  }
+  
+  @media (max-width:640px) {
+    a.active{
+        background-color: black;
+        color: white;
+    }
+  }
+
+  .quick-sign-in-button {
+    background: linear-gradient(145deg, #1e90ff, #0077cc); /* Blue gradient */
+    border: none;
+    border-radius: 12px; /* Rounded corners */
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); /* 3D shadow */
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .quick-sign-in-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.4)
+    ); /* Shiny overlay */
+    transition: all 0.5s ease;
+  }
+  
+  .quick-sign-in-button:hover {
+    transform: translateY(-2px); /* Lift the button on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(0, 0, 0, 0.25); /* Enhanced shadow on hover */
+  }
+  
+  .quick-sign-in-button:hover::before {
+    left: 100%; /* Shiny effect on hover */
+  }
+  
+  .quick-sign-in-button:active {
+    transform: translateY(0); /* Reset lift on click */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); /* Reset shadow on click */
+  }
