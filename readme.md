@@ -9,7 +9,7 @@ Technologies Used
 - Node.js: JavaScript runtime for building the server-side application.
 - Redux: State management library for managing user and cart data.
 - JWT (JSON Web Token): Used for user authentication and secure session management.
-- Stripe: Payment gateway integration for processing payments.
+- Razorpay: Payment gateway integration for processing payments.
 - Bcrypt.js: Password hashing for secure user authentication.
 - Cloudinary: For managing and storing product images.
 
@@ -18,7 +18,6 @@ Installation
 Prerequisites
 - Node.js (v14 or higher)
 - MongoDB (locally or using a cloud service like MongoDB Atlas)
-- Stripe account (for payment integration)
 - Cloudinary account (for image storage)
 
 General Features
