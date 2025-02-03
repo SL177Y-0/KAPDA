@@ -77,7 +77,7 @@ const Login = () => {
           onClick={handleQuickSignIn} // Redirect to Clerk sign-in page
           className="quick-sign-in-button" // Add a custom class for styling
         >
-          Sign In With Google 
+          Below 
         </button>
       </div>
 
