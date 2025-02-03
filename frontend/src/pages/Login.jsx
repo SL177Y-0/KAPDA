@@ -74,7 +74,6 @@ const Login = () => {
       <div className="mb-6 w-full flex flex-col items-center">
         <h3 className="text-xl font-semibold mb-2"></h3>
         <button
-          onClick={handleQuickSignIn} // Redirect to Clerk sign-in page
           className="quick-sign-in-button" // Add a custom class for styling
         >
           AUTHENTICATE
