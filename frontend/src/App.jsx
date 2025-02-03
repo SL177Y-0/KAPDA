@@ -15,7 +15,6 @@ import SearchBar from './components/SearchBar';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Verify from './pages/Verify';
-import { SignIn } from '@clerk/clerk-react'; // Import Clerk's SignIn component
 
 const App = () => {
   return (
@@ -34,26 +33,7 @@ const App = () => {
         <Route path='/place-order' element={<PlaceOrder />} />
         <Route path='/orders' element={<Orders />} />
         <Route path='/verify' element={<Verify />} />
-        {/* Clerk Sign-In Route */}
-        <Route
-          path='/sign-in'
-          element={
-            <div className="flex justify-center items-center h-screen">
-              <SignIn
-                path="/sign-in"
-                routing="path"
-                signUpUrl="/sign-up"
-                afterSignInUrl="/"
-                afterSignUpUrl="/"
-                appearance={{
-                  elements: {
-                    rootBox: 'w-full', // Ensure Clerk component takes full width
-                  },
-                }}
-              />
-            </div>
-          }
-        />
+        {/* Removed Clerk Sign-In Route */}
       </Routes>
       <Footer />
     </div>
