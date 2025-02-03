@@ -3,7 +3,6 @@ import { ShopContext } from '../context/ShopContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { GoogleLogin } from '@react-oauth/google'; // Import the Google login package
 
 const Login = () => {
   const [currentState, setCurrentState] = useState('Login');
@@ -40,40 +39,46 @@ const Login = () => {
     }
   };
 
-  // Handle Google login success
-  const handleGoogleLogin = async (response) => {
-    if (response.credential) {
-      try {
-        const res = await axios.post(backendUrl + '/api/user/google-login', { token: response.credential });
-        if (res.data.success) {
-          setToken(res.data.token);
-          localStorage.setItem('token', res.data.token);
-          navigate('/');
-        } else {
-          toast.error(res.data.message);
-        }
-      } catch (error) {
-        console.log(error);
-        toast.error('Google login failed.');
-      }
-    }
-  };
-
   useEffect(() => {
     if (token) {
       navigate('/');
     }
   }, [token]);
 
+  // Function to handle Quick Sign In button click
+  const handleQuickSignIn = () => {
+    // Open Clerk sign-in page in a new tab
+    const newTab = window.open('/sign-in', '_blank');
+
+    // Listen for messages from the new tab
+    const handleMessage = (event) => {
+      if (event.data === 'login-success') {
+        // Close the new tab
+        newTab.close();
+        // Redirect the original tab to the home page
+        navigate('/');
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+
+    // Cleanup the event listener
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  };
+
   return (
     <div className="flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800">
-      {/* Google Sign In Button */}
+      {/* Quick Sign In Button */}
       <div className="mb-6 w-full flex flex-col items-center">
-        <h3 className="text-xl font-semibold mb-2">Continue with Google</h3>
-        <GoogleLogin
-          onSuccess={handleGoogleLogin} // Handle Google login success
-          onError={() => toast.error('Google login failed')} // Handle Google login failure
-        />
+        <h3 className="text-xl font-semibold mb-2">Quick Sign In</h3>
+        <button
+          onClick={handleQuickSignIn} // Redirect to Clerk sign-in page
+          className="quick-sign-in-button" // Add a custom class for styling
+        >
+          Sign In with Clerk
+        </button>
       </div>
 
       {/* Custom Login Form */}
